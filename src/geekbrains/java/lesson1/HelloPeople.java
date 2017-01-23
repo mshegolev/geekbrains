@@ -44,6 +44,7 @@ public class HelloPeople {
 
     private static PrintStream getYear(int year) {
         float result = year/4;
+
         return System.out.format("This %s year is leap",result);
     }
 
