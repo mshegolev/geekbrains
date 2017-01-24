@@ -16,11 +16,9 @@ public class HelloPeople {
         char charVariableLetter = 's';
         char charVariableUnicod = 123;
 
-
         System.out.println(calculateFormula(1, 2, 3, 4));
         System.out.println(getDiffBetweenTentoTwenty(54, 6));
         System.out.println(getYear(2017));
-
         System.out.println("This is main programm");
 
     }
