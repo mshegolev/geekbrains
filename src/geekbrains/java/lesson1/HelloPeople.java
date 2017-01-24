@@ -31,24 +31,19 @@ public class HelloPeople {
     }
 
     private static boolean getDiffBetweenTentoTwenty(int a, int b) {
-        if (a + b <= 20 & a + b >= 10) {
-            return true;
-        } else {
-            return false;
-        }
+        return a + b <= 20 & a + b >= 10;
 
     }
 
     private static String getYear(int year) {
 
         if (year <= 1000 & (year % 4) == 0) {
-            return year+" - высокосный год";
+            return year + " - высокосный год";
         } else if ((year > 1000 & (year % 100) == 0 & (year % 400) == 0)) {
-            return year+" - высокосный год";
-        }
-        else if (year > 1000 & (year % 4) == 0) {
-            return year+" - высокосный год";
-        }else return year+" - обычный год";
+            return year + " - высокосный год";
+        } else if (year > 1000 & (year % 4) == 0) {
+            return year + " - высокосный год";
+        } else return year + " - обычный год";
     }
 
 }
