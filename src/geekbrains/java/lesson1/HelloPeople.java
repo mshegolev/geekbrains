@@ -1,7 +1,5 @@
 package geekbrains.java.lesson1;
 
-import java.io.PrintStream;
-
 /**
  * Created by myname on 23.01.17.
  */
@@ -21,7 +19,8 @@ public class HelloPeople {
 
         System.out.println(calculateFormula(1, 2, 3, 4));
         System.out.println(getDiffBetweenTentoTwenty(54, 6));
-        System.out.println(getYear(1560));
+        System.out.println(getYear(2017));
+
         System.out.println("This is main programm");
 
     }
@@ -42,10 +41,16 @@ public class HelloPeople {
 
     }
 
-    private static PrintStream getYear(int year) {
-        float result = year/4;
+    private static String getYear(int year) {
 
-        return System.out.format("This %s year is leap",result);
+        if (year <= 1000 & (year % 4) == 0) {
+            return year+" - высокосный год";
+        } else if ((year > 1000 & (year % 100) == 0 & (year % 400) == 0)) {
+            return year+" - высокосный год";
+        }
+        else if (year > 1000 & (year % 4) == 0) {
+            return year+" - высокосный год";
+        }else return year+" - обычный год";
     }
 
 }
