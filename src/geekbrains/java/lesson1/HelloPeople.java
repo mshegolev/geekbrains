@@ -1,5 +1,7 @@
 package geekbrains.java.lesson1;
 
+import java.io.PrintStream;
+
 /**
  * Created by myname on 23.01.17.
  */
@@ -27,8 +29,6 @@ public class HelloPeople {
         int year = 2016;
         if (getYear(year)) System.out.println(year + " - высокосный год");
         else System.out.println(year + " - обычный год");
-
-
 
     }
 
