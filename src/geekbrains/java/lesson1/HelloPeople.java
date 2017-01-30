@@ -18,33 +18,37 @@ public class HelloPeople {
         char charVariableLetter = 's';
         char charVariableUnicod = 123;
 
-
-        System.out.println(calculateFormula(1, 2, 3, 4));
-        System.out.println(getDiffBetweenTentoTwenty(54, 6));
-        System.out.println(getYear(1560));
         System.out.println("This is main programm");
+
+        int a = 1, b = 1, c = 1, d = 1;
+        int result = calculateFormula(a, b, c, d);
+        System.out.format("a=%s,b=%s,c=%s,d=%s, result =%s \n", a, b, c, d,result);
+
+        if (getDiffBetweenTentoTwenty(5, 6)) System.out.println("Сумма чисел >10 и <20"); else System.out.println("Сумма чисел вне диапозона>10 и <20");
+
+        int year = 2016;
+        if (getYear(year)) System.out.println(year + " - высокосный год");
+        else System.out.println(year + " - обычный год");
 
     }
 
     private static int calculateFormula(int a, int b, int c, int d) {
-        int result = a * (b + (c / d));
-        System.out.format("a=%s,b=%s,c=%s,d=%s, result =%s", a, b, c, d, result);
-        return result;
-
+        return a * (b + (c / d));
     }
+
 
     private static boolean getDiffBetweenTentoTwenty(int a, int b) {
-        if (a + b <= 20 & a + b >= 10) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return a + b <= 20 & a + b >= 10;
     }
 
-    private static PrintStream getYear(int year) {
-        float result = year/4;
-        return System.out.format("This %s year is leap",result);
+    private static boolean getYear(int year) {
+        if (year <= 1000 & (year % 4) == 0) {
+            return true;
+        } else if ((year > 1000 & (year % 100) == 0 & (year % 400) == 0)) {
+            return true;
+        } else if (year > 1000 & (year % 4) == 0) {
+            return true;
+        } else return false;
     }
 
 }
