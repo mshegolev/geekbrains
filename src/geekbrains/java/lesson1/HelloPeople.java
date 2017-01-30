@@ -1,12 +1,10 @@
 package geekbrains.java.lesson1;
 
-import java.io.PrintStream;
-
 /**
  * Created by myname on 23.01.17.
  */
 public class HelloPeople {
-    public static void main(String[] args) {
+    public static void mainMethod(String[] args) {
         byte byteVariable = 1;
         short shortVariable = 31900;
         int integerVariable = 129;
