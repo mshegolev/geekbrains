@@ -18,7 +18,7 @@ public abstract class Animal {
         System.out.println(this.name+" walks");
     }
 
-    public abstract boolean voice();
+    public abstract void voice();
 
     public String getName() {
         return name;

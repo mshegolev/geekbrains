@@ -5,14 +5,30 @@ import geekbrains.java.lesson5.Animal;
 /**
  * Created by mikhail.shchegolev on 06.02.2017.
  */
-public class Dog extends Animal{
+public class Dog extends Animal {
 
-    public Dog(int age, String color, String name){
+    public Dog(int age, String color, String name) {
         super(age, color, name);
     }
+
     @Override
-    public boolean voice(){
-        System.out.println(this.name+" woofs");
+    public void voice() {
+        System.out.println(this.name + " woofs");
+    }
+
+    @Override
+    public boolean run() {
+        return true;
+    }
+
+
+    public boolean swim() {
+        return true;
+    }
+
+
+    public boolean jump() {
+        return true;
     }
 
 }

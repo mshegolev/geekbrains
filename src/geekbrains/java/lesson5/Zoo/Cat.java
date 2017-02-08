@@ -11,12 +11,20 @@ public class Cat extends Animal{
     }
 
     @Override
-    public boolean voice(){
+    public void voice(){
         System.out.println(this.name+" meows");
     }
 
     @Override
     public boolean run() {
         return false;
+    }
+
+    public boolean swim() {
+        return true;
+    }
+
+    public boolean jump() {
+        return true;
     }
 }

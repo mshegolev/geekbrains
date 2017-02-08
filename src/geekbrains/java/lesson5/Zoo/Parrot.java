@@ -9,7 +9,7 @@ public class Parrot extends Bird {
         super(age,color,name,flyHeight);
     }
 
-    public boolean voice(){
+    public void voice(){
         System.out.println(this.name + " wanna cracker!");
     }
 

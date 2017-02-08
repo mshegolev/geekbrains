@@ -17,7 +17,7 @@ public class Bird extends Animal {
         this.fliHeight = fliHeight;
     }
 
-    public boolean voice() {
+    public void voice() {
         System.out.println(this.name + " tweet");
     }
 

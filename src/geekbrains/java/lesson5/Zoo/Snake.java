@@ -16,7 +16,7 @@ public class Snake extends Animal{
     }
 
     @Override
-    public boolean voice(){
+    public void voice(){
         System.out.println(this.name+" SSSSHHHHSSSHHH");
     }
 }

@@ -12,11 +12,22 @@ public class Horse extends Animal{
     }
 
     @Override
-    public boolean voice() {
+    public void voice() {
     }
 
     @Override
     public boolean run() {
         return true;
     }
+
+
+    public boolean swim() {
+        return true;
+    }
+
+
+    public boolean jump() {
+        return true;
+    }
+
 }
