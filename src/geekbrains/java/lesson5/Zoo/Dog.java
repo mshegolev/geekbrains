@@ -7,28 +7,14 @@ import geekbrains.java.lesson5.Animal;
  */
 public class Dog extends Animal {
 
-    public Dog(int age, String color, String name) {
-        super(age, color, name);
+    public Dog(int age, String color, String name, int str, int dex, int sta) {
+        super(age, color, name, str, dex, sta);
     }
 
     @Override
-    public void voice() {
-        System.out.println(this.name + " woofs");
+    public boolean isSwim(int i) {
+        return false;
     }
 
-    @Override
-    public boolean run() {
-        return true;
-    }
-
-
-    public boolean swim() {
-        return true;
-    }
-
-
-    public boolean jump() {
-        return true;
-    }
 
 }
