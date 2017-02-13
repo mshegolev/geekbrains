@@ -4,12 +4,12 @@ package geekbrains.java.lesson5;
  * Created by mikhail.shchegolev on 06.02.2017.
  */
 public abstract class Animal {
-    public String name;
-    public String color;
-    public int age;
-    public int str;
-    public int dex;
-    public int sta;
+    private String name;
+    private String color;
+    private int age;
+    private int str;
+    private int dex;
+    private int sta;
 
 
     public Animal(int age, String color, String name) {
