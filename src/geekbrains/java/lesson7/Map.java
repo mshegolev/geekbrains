@@ -4,17 +4,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 public class Map extends JPanel {
 
-    int linesCount;
+    private int fieldSizeY;
+    private int fieldSizeX;
     final int PANEL_SIZE = 500;
+    private final Random random = new Random();
+    int linesCount;
     int CELL_SIZE;
 
+    int field;
+    int winLenght;
+    int cellWigth;
+    int cellHight;
 
-    public Map(int linesCount) {
-        this.linesCount = linesCount;
-        CELL_SIZE = PANEL_SIZE / linesCount;
+    int EMPTY_DOT = 0;
+    int HUMAN_DOT = 1;
+    int AI_DOT = 2;
+
+    boolean initialized = false;
+    private int toWin;
+
+
+
+    public Map(int WEIGHT, int HEIGHT) {
+        this.linesCount = WEIGHT;
+        CELL_SIZE = PANEL_SIZE / HEIGHT;
         setBackground(Color.white);
 
         addMouseListener(new MouseAdapter() {
@@ -27,6 +44,15 @@ public class Map extends JPanel {
         });
     }
 
+    void update(MouseEvent e) {
+        int cellX = e.getX() / cellWigth;
+        int cellY = e.getY() / cellHight;
+        if (!isValid(cellX, cellY || isEmp) ) return;
+
+        repaint();
+    }
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -35,4 +61,36 @@ public class Map extends JPanel {
             g.drawLine(i * CELL_SIZE, 0, i * CELL_SIZE, PANEL_SIZE);
         }
     }
+
+    // Инициализация игрового поля с заданием размеров и "выигрышной длины"
+    private void initMap(int size_y, int size_x, int winLength) {
+        fieldSizeY = size_y;
+        fieldSizeX = size_x;
+        toWin = winLength;
+        field = field[fieldSizeY][fieldSizeX];
+        for (int i = 0; i < fieldSizeY; i++) {
+            for (int j = 0; j < fieldSizeX; j++) {
+                field[i][j] = EMPTY_DOT;
+            }
+        }
+    }
+
+    // Вывели поле с любыми украшениями вокруг него
+    private void printMap() {
+        System.out.print("+ ");
+        for (int i = 1; i <= fieldSizeX; i++) System.out.print(i + " ");
+        System.out.println();
+        for (int i = 0; i < fieldSizeY; i++) {
+            System.out.print(i + 1 + "|");
+            for (int j = 0; j < fieldSizeX; j++) System.out.print(field[i][j] + "|");
+            System.out.println();
+            System.out.println(new String(new char[fieldSizeX * 2 + 2]).replace('\0', '-'));
+        }
+        System.out.println();
+    }
 }
+
+
+
+
+

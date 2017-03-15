@@ -6,14 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MyWindow extends JFrame {
-    public MyWindow() {
-        setSize(507, 555);
+    public MyWindow(int WIDTH,int HEIGHT) {
+
+        setSize(500, 500);
         setResizable(false);
         setLocation(800, 200);
         setTitle("Simple Window");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        Map jpMap = new Map(5);
+        Map jpMap = new Map(WIDTH,HEIGHT);
         JPanel jpBottom = new JPanel(new GridLayout());
         jpBottom.setBackground(new Color(0, 0, 255));
         add(jpBottom, BorderLayout.SOUTH);
