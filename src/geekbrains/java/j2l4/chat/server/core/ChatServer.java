@@ -1,4 +1,4 @@
-package ru.geekbrains.chat.server.core;
+package geekbrains.java.j2l4.chat.server.core;
 
 public class ChatServer {
 

@@ -1,4 +1,4 @@
-package ru.geekbrains.chat.client;
+package geekbrains.java.j2l4.chat.client;
 
 import javax.swing.*;
 import java.awt.*;

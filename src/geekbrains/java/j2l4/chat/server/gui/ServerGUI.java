@@ -1,6 +1,6 @@
-package ru.geekbrains.chat.server.gui;
+package geekbrains.java.j2l4.chat.server.gui;
 
-import ru.geekbrains.chat.server.core.ChatServer;
+import geekbrains.java.j2l4.chat.server.core.ChatServer;
 
 import javax.swing.*;
 import java.awt.*;
