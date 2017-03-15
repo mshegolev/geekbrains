@@ -47,8 +47,6 @@ public class Map extends JPanel {
     void update(MouseEvent e) {
         int cellX = e.getX() / cellWigth;
         int cellY = e.getY() / cellHight;
-        if (!isValid(cellX, cellY || isEmp) ) return;
-
         repaint();
     }
 
@@ -67,10 +65,10 @@ public class Map extends JPanel {
         fieldSizeY = size_y;
         fieldSizeX = size_x;
         toWin = winLength;
-        field = field[fieldSizeY][fieldSizeX];
+        //field = field[fieldSizeY][fieldSizeX];
         for (int i = 0; i < fieldSizeY; i++) {
             for (int j = 0; j < fieldSizeX; j++) {
-                field[i][j] = EMPTY_DOT;
+          //      field[i][j] = EMPTY_DOT;
             }
         }
     }
@@ -82,7 +80,7 @@ public class Map extends JPanel {
         System.out.println();
         for (int i = 0; i < fieldSizeY; i++) {
             System.out.print(i + 1 + "|");
-            for (int j = 0; j < fieldSizeX; j++) System.out.print(field[i][j] + "|");
+            for (int j = 0; j < fieldSizeX; j++) System.out.print("gg");
             System.out.println();
             System.out.println(new String(new char[fieldSizeX * 2 + 2]).replace('\0', '-'));
         }
