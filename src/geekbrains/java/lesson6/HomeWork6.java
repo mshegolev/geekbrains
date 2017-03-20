@@ -1,6 +1,6 @@
 package geekbrains.java.lesson6;
 
-import org.jetbrains.annotations.NotNull;
+import com.sun.istack.internal.NotNull;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

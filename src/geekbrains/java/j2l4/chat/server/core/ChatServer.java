@@ -1,12 +1,23 @@
 package geekbrains.java.j2l4.chat.server.core;
 
+import geekbrains.java.j2l4.chat.network.ServerSocketThread;
+
 public class ChatServer {
 
     public void start(int port){
-        System.out.println("Сервер запущен");
+        if(serverSocketThread != null && serverSocketThread.isAlive()) {
+            System.out.println("server now is running");
+        }
+        serverSocketThread = new ServerSocketThread("ServerSocketThread");
     }
 
-    public void stop(){
-        System.out.println("Сервер остановлен");
+    private ServerSocketThread serverSocketThread;
+
+    public void stop() {
+        if (serverSocketThread == null || !serverSocketThread.isAlive()){
+            System.out.println("Server don't run");
+        return;
+    }
+        serverSocketThread.interrupt();
     }
 }
