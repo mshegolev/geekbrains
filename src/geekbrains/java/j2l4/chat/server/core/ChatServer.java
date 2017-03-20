@@ -12,30 +12,40 @@ public class ChatServer {
     private int timeout;
     private ServerSocketThreadListener serverSocketThreadListener = new ServerSocketThreadListener() {
         @Override
-        public void onStartServerThread(ServerSocketThread thread) {
+        public synchronized void onStartServerThread(ServerSocketThread thread,Socket socket) {
             puLog(thread, "onStartServerThread");
         }
 
         @Override
-        public void onStopServerThread(ServerSocketThread thread) {
+        public void onStopServerThread(ServerSocketThread thread, Socket socket) {
+
+        }
+
+        @Override
+        public synchronized void onStopServerThread(ServerSocketThread thread) {
             puLog(thread, "onStopServerThread");
         }
 
         @Override
-        public void onCreateServerSocket(ServerSocketThread thread, ServerSocket serverSocket) {
+        public synchronized void onCreateServerSocket(ServerSocketThread thread, ServerSocket serverSocket) {
             puLog(thread, "onStopServerThread");
         }
 
         @Override
-        public void onAcceptedSocket(ServerSocketThread thread, Socket socket) {
+        public synchronized  void onAcceptedSocket(ServerSocketThread thread, Socket socket) {
             puLog(thread,"Client connected: " + socket.toString());
             String threadName = "Socket thred: " + socket.getInetAddress() + ":"+socket.getPort();
             new SocketThread(threadName,socket);
         }
 
         @Override
-        public void onTimeOutSocket(ServerSocketThread thread, ServerSocket serverSocket) {
-            puLog(thread, "onStopServerThread");
+        public synchronized void onTimeOutSocket(ServerSocketThread thread, ServerSocket serverSocket) {
+            //puLog(thread, "onTimeOutSocket");
+        }
+
+        @Override
+        public synchronized void onRecieveString(SocketThread socketThread,Socket socket, String value){
+            socketThread.sendMsg(value);
         }
     };
 

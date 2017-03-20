@@ -7,7 +7,9 @@ import java.net.Socket;
  * Created by mikhail.shchegolev on 20.03.2017.
  */
 public interface ServerSocketThreadListener {
-    void onStartServerThread(ServerSocketThread thread);
+    void onStartServerThread(ServerSocketThread thread,Socket socket);
+
+    void onStopServerThread(ServerSocketThread thread,Socket socket);
 
     void onStopServerThread(ServerSocketThread thread);
 
@@ -17,6 +19,5 @@ public interface ServerSocketThreadListener {
 
     void onTimeOutSocket(ServerSocketThread thread, ServerSocket serverSocket);
 
-
-
+    void onRecieveString(SocketThread socketThread, Socket socket, String value);
 }

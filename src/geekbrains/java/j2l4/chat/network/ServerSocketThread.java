@@ -23,23 +23,23 @@ public class ServerSocketThread extends Thread {
 
     @Override
     public void run() {
-        eventListener.onStartServerThread(this);
+        Socket socket = null;
+        eventListener.onStartServerThread(this, socket);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             serverSocket.setSoTimeout(timeout);
             eventListener.onCreateServerSocket(this, serverSocket);
             while (!isInterrupted()) {
-                Socket socket;
                 try {
                     socket = serverSocket.accept();
                 } catch (SocketTimeoutException e) {
-                    eventListener.onTimeOutSocket(this,serverSocket);
+                    eventListener.onTimeOutSocket(this, serverSocket);
                     continue;
                 }
-                eventListener.onAcceptedSocket(this,socket);
+                eventListener.onAcceptedSocket(this, socket);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             eventListener.onStopServerThread(this);
         }
     }

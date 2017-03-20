@@ -13,7 +13,7 @@ public class SocketThread extends Thread {
     private SocketThreadListener eventListener;
     private DataOutputStream out;
 
-    public SocketThread(String name, SocketThreadListener eventListener, Socket socket) {
+    public SocketThread(String name, Socket socket) {
         super(name);
         this.socket = socket;
         this.eventListener = eventListener;
@@ -42,12 +42,13 @@ public class SocketThread extends Thread {
             eventListener.onStopSocketThread(this, socket);
         }
     }
-    private synchronized void sendMsg(String msg){
+    public synchronized void sendMsg(String msg){
         try {
             out.writeUTF(msg);
             out.flush();
         } catch (IOException e) {
             e.printStackTrace();
+            close();
         }
     }
 
