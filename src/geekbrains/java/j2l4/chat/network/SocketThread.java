@@ -42,13 +42,15 @@ public class SocketThread extends Thread {
             eventListener.onStopSocketThread(this, socket);
         }
     }
-    public synchronized void sendMsg(String msg){
+    public synchronized boolean sendMsg(String msg){
         try {
             out.writeUTF(msg);
             out.flush();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
             close();
+            return false;
         }
     }
 
