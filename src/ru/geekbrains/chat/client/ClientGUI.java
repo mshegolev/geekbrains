@@ -100,7 +100,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     }
 
     private void sendMsg(){
-        String msg = fieldInput.getText();
+        String msg = fieldInput.getText()+"\n";
         fieldInput.setText(null);
         fieldInput.grabFocus();
         socketThread.sendMsg(msg);
