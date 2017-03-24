@@ -6,7 +6,7 @@ public class MyClass {
         System.out.println("Класс MyClass загрузился в память");
     }
 
-    MyClass() {
+    MyClass(){
         System.out.println("Сработал конструктор");
     }
 }
