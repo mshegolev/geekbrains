@@ -1,0 +1,9 @@
+package ru.geekbrains.chat;
+
+public class Cmd {
+
+    public static final String DELIMITER = ";";
+    public static final String AUTH = "/auth";
+    public static final String NICK = "/nick";
+
+}
