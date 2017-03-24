@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ClientGUI extends JFrame implements ActionListener, Thread.UncaughtExceptionHandler {
 
@@ -49,6 +51,8 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         JScrollPane scrollLog = new JScrollPane(log);
         add(scrollLog, BorderLayout.CENTER);
 
+        btnSend.addActionListener(this);
+        fieldInput.addActionListener(this);
         btnLogin.addActionListener(this);
         chkAlwaysOnTop.addActionListener(this);
 
@@ -76,10 +80,25 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         Object src = e.getSource();
         if(src == chkAlwaysOnTop) {
             setAlwaysOnTop(chkAlwaysOnTop.isSelected());
-        } else if(src == btnLogin){
+        } else if(src == btnLogin) {
             throw new RuntimeException("Всё пропало!!!");
+        } else if(src == btnSend || src == fieldInput){
+            sendMsg();
         } else {
             throw new RuntimeException("Неизвестный src = " + src);
+        }
+    }
+
+    private void sendMsg(){
+        String msg = fieldInput.getText() + "\n";
+        fieldInput.setText(null);
+        fieldInput.grabFocus();
+        log.append(msg);
+        try(FileWriter out = new FileWriter("log.txt", true)){
+            out.write(msg);
+            out.flush();
+        } catch (IOException e){
+            throw new RuntimeException(e);
         }
     }
 

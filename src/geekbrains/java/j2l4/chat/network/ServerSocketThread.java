@@ -1,28 +1,48 @@
 package geekbrains.java.j2l4.chat.network;
 
-/**
- * Created by myname on 16.03.17.
- */
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+
 public class ServerSocketThread extends Thread {
-    public ServerSocketThread(String name) {
+    private ServerSocketThreadListener eventListener;
+    private int port;
+    private int timeout;
+
+
+    public ServerSocketThread(String name,ServerSocketThreadListener eventListener, int port,int timeout) {
         super(name);
+        this.eventListener=eventListener;
+        this.port = port;
+        this.timeout = timeout;
+
         start();
     }
 
     @Override
-    public void run()
-    {
-        System.out.println("server running!");
-        while (!isInterrupted()) {
-            System.out.println("Thread is work: " + getName());
-            try{
-                sleep(3000);
-            }catch (InterruptedException e ){
-                System.out.println("sleep prervan interrapted");
-                break;
+    public void run() {
+        Socket socket = null;
+        eventListener.onStartServerThread(this, socket);
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            serverSocket.setSoTimeout(timeout);
+            eventListener.onCreateServerSocket(this, serverSocket);
+            while (!isInterrupted()) {
+                try {
+                    socket = serverSocket.accept();
+                } catch (SocketTimeoutException e) {
+                    eventListener.onTimeOutSocket(this, serverSocket);
+                    continue;
+                }
+                eventListener.onAcceptedSocket(this, socket);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            eventListener.onStopServerThread(this);
         }
-
     }
-
 }
+
+
