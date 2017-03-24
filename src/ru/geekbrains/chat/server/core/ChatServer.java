@@ -128,7 +128,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         for (int i = 0; i < clients.size(); i++) {
 
             ChatSocketThread client = (ChatSocketThread) clients.get(i);
-            if (addTime) {msg = getTime()+ this.msg;}
+            if (addTime) {msg = getTime()+ msg;}
             if (addNick){msg = client.getNick()+ msg;}
             if (client.authorized()) client.sendMsg(msg);
         }
