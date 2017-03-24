@@ -182,7 +182,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                log.append(value + "\n");
+                log.append(value);
             }
         });
     }

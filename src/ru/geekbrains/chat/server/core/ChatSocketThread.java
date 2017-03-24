@@ -14,17 +14,19 @@ class ChatSocketThread extends SocketThread {
         super(name, eventListener, socket);
     }
 
-    boolean authorized(){ return authorized; }
+    boolean authorized() {
+        return authorized;
+    }
 
-    void setAuthorized(boolean authorized){
+    void setAuthorized(boolean authorized) {
         this.authorized = authorized;
     }
 
-    String getNick(){
+    String getNick() {
         return nick;
     }
 
-    void setNick(String nick){
+    void setNick(String nick) {
         this.nick = nick;
     }
 }
