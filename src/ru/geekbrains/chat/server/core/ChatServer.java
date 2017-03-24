@@ -9,7 +9,6 @@ import ru.geekbrains.network.SocketThreadListener;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 public class ChatServer implements ServerSocketThreadListener, SocketThreadListener {
@@ -80,7 +79,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         ChatSocketThread client = (ChatSocketThread) socketThread;
         clients.remove(client);
         if (client.authorized()) {
-            sendBroadCastMsg(client.getNick() + ": disconnected", true);
+            sendBroadCastMsg(client.getNick() + ": disconnected", true,true);
         }
     }
 
@@ -97,7 +96,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
             handleNonAuthorizedMsg(client, value);
             return;
         }
-        sendBroadCastMsg(value, true);
+        sendBroadCastMsg(value, true,true);
     }
 
     private void handleNonAuthorizedMsg(ChatSocketThread client, String value) {
@@ -115,17 +114,22 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         }
         client.setNick(nick);
         client.setAuthorized(true);
-        sendBroadCastMsg(nick + ": connected", true);
+        sendBroadCastMsg(nick + ": connected", true,true);
     }
 
 
-
-    private void sendBroadCastMsg(String msg, boolean addTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    private String getTime() {
         LocalDate localDate = LocalDate.now();
-        if (addTime){msg = dtf.format(localDate)+":"+ msg;}
+        StringBuilder msg = new StringBuilder();
+        return msg.append(localDate.toString()).append(": ").toString();
+    }
+
+    private void sendBroadCastMsg(String msg, boolean addTime, boolean addNick) {
         for (int i = 0; i < clients.size(); i++) {
+
             ChatSocketThread client = (ChatSocketThread) clients.get(i);
+            if (addTime) {msg = getTime()+ this.msg;}
+            if (addNick){msg = client.getNick()+ msg;}
             if (client.authorized()) client.sendMsg(msg);
         }
     }
