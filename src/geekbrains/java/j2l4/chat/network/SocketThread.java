@@ -25,9 +25,9 @@ public class SocketThread extends Thread {
         try {
             eventListener.onStartSocketThread(this, socket);
             DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            out = new DataOutputStream(socket.getOutputStream());
             eventListener.onSocketIsReady(this, socket);
-            while (true) {
+            while (!isInterrupted()) {
                 String msg = in.readUTF();
                 eventListener.onRecieveString(this, socket, msg);
             }
